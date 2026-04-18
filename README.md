@@ -1,114 +1,147 @@
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:1a0a2e,50:6a0dad,100:3d0066&height=220&section=header&text=%EC%95%84%EB%A5%B4%EC%B9%B8%20%EC%97%B0%EB%8C%80%EA%B8%B0&fontSize=52&fontColor=ffffff&fontAlignY=38&desc=Arkan%20Chronicles%20%C2%B7%20Browser%20RPG&descAlignY=58&descSize=18&descColor=d4aaff" alt="header"/>
+# ⚔ 아르칸: 잊혀진 왕좌
+### Kingdom of Arkan — Pixel RPG
 
-<br/>
+[![Play Now](https://img.shields.io/badge/▶%20지금%20바로%20플레이-FF6B6B?style=for-the-badge&logoColor=white)](https://coding-jhj.github.io/ARKAN_FORGOTTEN_THRONE/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-배포중-4CAF50?style=for-the-badge&logo=github)](https://coding-jhj.github.io/ARKAN_FORGOTTEN_THRONE/)
 
-**🎮 [▶ 지금 바로 플레이하기](https://coding-jhj.github.io/My-RPG-Game/ARCAN_RPG.htmlARCAN_RPG.html)**
+<br>
 
-<br/>
+> *왕좌는 잊혀졌고, 왕국은 어둠에 잠겼다.*  
+> *여섯 명의 영웅이 다시 빛을 찾아 나선다.*
 
-[![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)](https://github.com/coding-jhj/My-RPG-Game)
-[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)](https://github.com/coding-jhj/My-RPG-Game)
-[![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)](https://github.com/coding-jhj/My-RPG-Game)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-222222?style=for-the-badge&logo=github&logoColor=white)](https://coding-jhj.github.io/My-RPG-Game/ARCAN_RPG.htmlARCAN_RPG.html)
+<br>
 
-> 설치 없이 브라우저에서 즉시 플레이하는 **픽셀아트 판타지 RPG** — 단일 HTML 파일로 구현
-
-<br/>
+![Pixel RPG](https://img.shields.io/badge/장르-픽셀%20턴제%20RPG-7C4DFF?style=flat-square)
+![HTML](https://img.shields.io/badge/HTML-단일%20파일-E34F26?style=flat-square&logo=html5&logoColor=white)
+![No Install](https://img.shields.io/badge/설치-필요없음-00BCD4?style=flat-square)
 
 </div>
 
 ---
 
-## ⚔️ 게임 소개
+## 🎮 플레이 방법
 
-**아르칸: 잊혀진 왕좌**는 아르칸 왕국을 배경으로 한 브라우저 기반 턴제 RPG입니다.
-개성 넘치는 6명의 NPC 캐릭터를 파티원으로 영입하고, 던전을 탐험하며 왕국의 비밀을 밝혀내세요.
-
-<br/>
-
-## 🎮 주요 시스템
-
-### 🗺 오픈 월드 탐험
-마을과 던전을 자유롭게 이동하며 새로운 지역을 해금해 나갑니다. 클리어할수록 더 깊은 곳으로.
-
-### 👥 파티 편성 시스템
-6명의 캐릭터 중 최대 3명을 파티로 구성합니다. 각 캐릭터는 고유 직업과 스킬을 보유하며, 일부는 특정 조건을 만족해야 영입할 수 있습니다.
-
-### ⚔️ 전략적 턴제 전투
-SPD 스탯 기반 행동 순서, 독·출혈 도트 데미지, 방어·회피·약화 버프/디버프 시스템으로 전략적인 전투를 즐길 수 있습니다.
-
-### 🏪 상점 & 장비
-무기·방어구·포션·장신구 10종 이상을 구매하고 캐릭터별로 장착해 스탯을 강화하세요.
-
-### 📈 성장 시스템
-경험치로 레벨업하면 스탯이 상승합니다. 던전 클리어 시 새 캐릭터 영입과 지역이 해금됩니다.
-
-<br/>
-
-## 🧙 등장 캐릭터
-
-| 캐릭터 | 직업 | 특기 | 영입 조건 |
-|:---:|------|------|----------|
-| ⚒ **고른** | 전사 | 분노의 일격 · 철벽 | 처음부터 |
-| 🌸 **엘라** | 도적 | 독 바늘 · 현혹 | 처음부터 |
-| 🍺 **머독** | 도적 | 뒤통수 · 정보 거래 | 골드 300 |
-| ⚔ **세라** | 기사 | 회전 베기 · 돌격 | 던전 1 클리어 |
-| 🔮 **피우** | 마법사 | 화염구 · 시간 지연 | 퀘스트 완료 |
-| 👹 **카그** | 전사 | 대지 강타 · 포효 | 숨겨진 던전 |
-
-<br/>
-
-## 🏰 던전 구성
+**설치 없이 브라우저에서 바로 플레이할 수 있어요.**
 
 ```
-아르칸 마을
-  └─▶ 폐허 던전 (5 인카운터 + 보스: 석상 골렘)
-            └─▶ 어둠의 탑 (5 인카운터 + 보스: 어둠 드래곤)
-                      └─▶ ??? (미해금)
+👆 상단의 "지금 바로 플레이" 버튼 클릭
 ```
 
-<br/>
-
-## 🚀 플레이 방법
-
-브라우저에서 바로 플레이: **[▶ 플레이](https://coding-jhj.github.io/My-RPG-Game/ARCAN_RPG.htmlARCAN_RPG.html)**
-
-또는 로컬에서 실행:
+또는 파일을 직접 다운로드해서 열어도 돼요:
 
 ```bash
-git clone https://github.com/coding-jhj/My-RPG-Game.git
-# 아르칸RPG.html 파일을 브라우저로 열기
+git clone https://github.com/coding-jhj/ARKAN_FORGOTTEN_THRONE.git
+# index.html 파일을 브라우저로 열기
 ```
 
-> 별도 설치·서버 불필요 — HTML 파일 하나로 완전 동작합니다.
+---
 
-<br/>
+## 📖 스토리
+
+아르칸 왕국의 왕좌가 사라진 지 100년.  
+전설 속 유물 **"잊혀진 왕좌"** 를 되찾으려는 음모가 왕국 곳곳에서 꿈틀댄다.
+
+대장장이, 시녀, 용병, 마법사... 서로 다른 이유로 모인 여섯 명의 영웅이  
+마을에서 시작해 폐허와 어둠의 탑을 넘어 진실에 다가간다.
+
+---
+
+## ⚔ 게임 화면
+
+| 화면 | 설명 |
+|------|------|
+| 🗺 **월드맵** | 왕국 지도에서 마을·던전 이동 |
+| 🏘 **마을** | 길드·상점·NPC·도감 진입 |
+| ⚔ **길드** | 파티 편성 (최대 3인) |
+| 🛒 **상점** | 무기·방어구·포션 구매 |
+| 💬 **NPC** | 마을 장로와 대화·퀘스트 수락 |
+| 🥊 **배틀** | 턴제 전투 (행동·스킬·아이템) |
+| 📊 **스탯** | 캐릭터 능력치·장비 확인 |
+| 📖 **인물도감** | 영웅·몬스터 도감 열람 |
+
+---
+
+## 🧑‍🤝‍🧑 등장 캐릭터
+
+| 캐릭터 | 직업 | 속성 | 특기 |
+|--------|------|------|------|
+| ⚒ **고른** | 대장장이 (전사) | 🔥 화염 | 분노의 일격 · 철벽 |
+| 🗡 **엘라** | 왕궁 시녀 (도적) | 💨 바람 | 독 바늘 · 현혹 |
+| 🍺 **머독** | 비밀 장부 (도적) | 🌑 암흑 | 뒤통수 · 정보 거래 |
+| 🛡 **세라** | 전직 기사·용병 (기사) | ❄ 냉기 | 방패 격돌 · 성역 |
+| 🔮 **피우** | 마법사 조수 (마법사) | ⚡ 번개 | 마법 미사일 · 과부하 |
+| 🪓 **카그** | 족장 경호원 (전사) | 🌿 대지 | 대지 격분 · 위협 |
+
+---
+
+## 🗺 던전
+
+| 던전 | 설명 |
+|------|------|
+| ⚔ **폐허 던전** | 왕국 외곽의 버려진 성터. 초반 공략 지역. |
+| 🗼 **어둠의 탑** | 봉인된 마력이 넘치는 고난이도 던전. |
+| ❓ **???** | 아직 베일에 싸인 세 번째 지역. |
+
+---
+
+## ⚙ 전투 시스템
+
+```
+턴제 커맨드 배틀
+├── 행동 탭  : 기본 공격 / 방어
+├── 스킬 탭  : 캐릭터 고유 스킬 (MP 소모, 쿨다운)
+└── 아이템 탭: 포션·에테르 사용
+```
+
+- 파티 3인 vs 적 2~3인 구성
+- HP 0 → 전투 불능 (전원 전투 불능 시 패배)
+- 승리 시 골드·경험치 획득 → 레벨업 → 스탯 성장
+
+---
 
 ## 🛠 기술 스택
 
-순수 HTML · CSS · Vanilla JavaScript — 외부 라이브러리 없이 단일 파일로 구현했습니다.
-픽셀아트 캐릭터는 SVG로 직접 제작했으며, `shape-rendering: crispEdges`로 선명한 픽셀 표현을 구현했습니다.
-
-<br/>
-
-## 📂 파일 구조
-
 ```
-📦 My-RPG-Game
- ┣ 📄 아르칸RPG.html    ← 게임 본체 (단일 파일)
- ┗ 📄 README.md
+HTML5 / CSS3 / Vanilla JavaScript
+├── Canvas API    — 마인크래프트 스타일 픽셀 블록 배경
+├── Press Start 2P — 픽셀 폰트 (Google Fonts)
+└── 단일 HTML 파일 — 외부 의존성 없음, 설치 불필요
 ```
 
-<br/>
+---
+
+## 📁 파일 구조
+
+```
+arkan-forgotten-throne/
+└── index.html     ← 게임 전체 (HTML + CSS + JS 올인원)
+```
+
+---
+
+## 🚀 로컬 실행
+
+```bash
+git clone https://github.com/coding-jhj/ARKAN_FORGOTTEN_THRONE.git
+cd arkan-forgotten-throne
+# index.html을 브라우저로 열기 (서버 불필요)
+```
+
+---
+
+## 📜 라이선스
+
+개인 프로젝트 · 학습 목적 제작  
+© 2025 ghksw
 
 ---
 
 <div align="center">
 
-<img src="https://capsule-render.vercel.app/api?type=waving&color=0:3d0066,50:6a0dad,100:1a0a2e&height=100&section=footer" alt="footer"/>
+**[▶ 지금 플레이하기](https://coding-jhj.github.io/ARKAN_FORGOTTEN_THRONE/)**
 
-**⚔ 아르칸: 잊혀진 왕좌** | Made by [coding-jhj](https://github.com/coding-jhj/My-RPG-Game)
+*Made with ❤ and Pixel Art*
 
 </div>
