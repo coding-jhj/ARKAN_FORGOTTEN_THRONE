@@ -6,8 +6,8 @@
 
 <p align="center">
   <img src="docs/screenshots/01_title.png"  width="200" alt="타이틀 화면">
+  <img src="docs/screenshots/02_world.png"  width="200" alt="월드맵 탐험">
   <img src="docs/screenshots/04_battle.png" width="200" alt="턴제 전투">
-  <img src="docs/screenshots/05_codex.png"  width="200" alt="몬스터 도감">
 </p>
 <p align="center"><sub>📱 모바일 반응형 · 픽셀 아트 · 빌드 없는 정적 사이트</sub></p>
 > *왕좌는 잊혀졌고, 왕국은 어둠에 잠겼다.*  
