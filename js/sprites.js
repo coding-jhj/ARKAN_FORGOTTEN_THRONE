@@ -24,6 +24,7 @@ lich: `<img src="assets/sprites/lich.webp" alt="lich" style="display:block;width
 guardian: `<img src="assets/sprites/guardian.webp" alt="guardian" style="display:block;width:100%;height:100%;object-fit:contain;image-rendering:pixelated;">`,
 
 demon_lord: `<img src="assets/sprites/demon_lord.webp" alt="demon_lord" style="display:block;width:100%;height:100%;object-fit:contain;image-rendering:pixelated;">`,
+orc_chief: `<img src="assets/sprites/orc.webp" alt="orc_chief" style="display:block;width:100%;height:100%;object-fit:contain;image-rendering:pixelated;">`,
 
 };
 

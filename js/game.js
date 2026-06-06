@@ -975,6 +975,7 @@ function claimQuest(qid, npcId){
   G.gold+=q.reward.gold;
   G.party.forEach(cid=>{if(CHARS[cid])CHARS[cid].base.xp+=Math.floor(q.reward.xp/Math.max(1,G.party.length));});
   G.flags[qid+'_claimed']=true;
+  if(qid==='q1' && !G.unlockedChars.includes('ch5')){ G.unlockedChars.push('ch5'); showToast('🔮 마을 장로의 신뢰를 얻었다! 피우 영입 가능!'); }
   updateGoldDisplay();
   showToast(`🎁 보상 수령! 🪙+${q.reward.gold} XP+${q.reward.xp}`);
   const dlg=npc.dialog[0];showNPCDialog(dlg);
@@ -2036,7 +2037,7 @@ function dungeonClear(){
   let rewardHtml='<div class="reward-row"><span class="reward-icon">🏆</span>던전 완전 공략!</div>';
 
   // 클리어 보너스 골드
-  const bonusGold={dungeon1:300,dungeon2:600,dungeon3:800,dungeon4:1200,dungeon5:2000}[dId]||0;
+  const bonusGold={dungeon1:300,dungeon2:600,dungeon3:800,dungeon4:1200,dungeon5:2000,dungeonSecret:900}[dId]||0;
   G.gold+=bonusGold;
   updateGoldDisplay();
   rewardHtml+=`<div class="reward-row"><span class="reward-icon">🪙</span>클리어 보너스 +${bonusGold} 골드</div>`;
@@ -2058,11 +2059,10 @@ function dungeonClear(){
       <div class="reward-row"><span class="reward-icon">🗝</span>왕성 지하 해금</div>
       <div class="reward-row"><span class="reward-icon">⚔</span>세라 영입 가능</div>`;
   } else if(dId==='dungeon2'){
-    unlock('dungeon5');
-    addChar('ch5'); addChar('ch6');
-    unlockMsg='피우·카그 영입 가능! 마왕의 성 반봉인 해제!';
-    rewardHtml+=`<div class="reward-row"><span class="reward-icon">🔮</span>피우 영입 가능</div>
-      <div class="reward-row"><span class="reward-icon">👹</span>카그 영입 가능</div>`;
+    unlock('dungeon5'); unlock('secret1');
+    unlockMsg='마왕의 성 반봉인 해제! 협곡 너머 숨겨진 던전 발견!';
+    rewardHtml+=`<div class="reward-row"><span class="reward-icon">💀</span>마왕의 성 반봉인 해제</div>
+      <div class="reward-row"><span class="reward-icon">❓</span>숨겨진 던전 발견!</div>`;
   } else if(dId==='dungeon3'){
     unlock('dungeon4');
     addChar('ch7');
@@ -2073,6 +2073,10 @@ function dungeonClear(){
     unlock('dungeon5');
     unlockMsg='마왕의 성 완전 해금!';
     rewardHtml+=`<div class="reward-row"><span class="reward-icon">💀</span>마왕의 성 해금</div>`;
+  } else if(dId==='dungeonSecret'){
+    addChar('ch6');
+    unlockMsg='🎉 오크 대족장 격파! 카그 영입 가능!';
+    rewardHtml+=`<div class="reward-row"><span class="reward-icon">👹</span>카그 영입 가능</div>`;
   } else if(dId==='dungeon5'){
     addChar('ch8');
     unlockMsg='🎉 마왕을 쓰러뜨렸다! 자인 영입 가능! 왕국에 평화가 찾아왔다!';
@@ -2890,9 +2894,51 @@ const MONSTER_LORE = {
     habitat:'어둠의 탑 최심층 (보스)',
     rank:'S', rankColor:'#c080ff',
   },
+  bandit:{
+    fullName:'산적 (Bandit)',
+    desc:'왕성 지하로 통하는 길목에 숨어든 무법자. 빠른 발과 비열한 뒤치기로 방심한 모험가의 목숨과 골드를 노린다. 무리 지어 다니며 약자를 집요하게 노린다.',
+    weakness:'HP가 낮아 광역기 한 방에 정리 가능. 선제 처치로 뒤치기를 차단할 것.',
+    habitat:'왕성 지하 1~3층',
+    rank:'C', rankColor:'#77bbff',
+  },
+  vampire:{
+    fullName:'흡혈귀 (Vampire)',
+    desc:'왕성 지하에 봉인된 불사의 귀족. 흡혈로 자신의 HP를 회복하고 현혹으로 상대를 무력화한다. 어둠 속에서 더욱 강력해지는 까다로운 적.',
+    weakness:'화염·신성 계열에 약하다. 흡혈 전 빠르게 HP를 깎아 회복을 봉쇄할 것.',
+    habitat:'왕성 지하 (보스)',
+    rank:'A', rankColor:'#ff8899',
+  },
+  lich:{
+    fullName:'대리치 네크로스 (Archlich Necros)',
+    desc:'고대 유적을 지배하는 불멸의 마법사. 어둠 마법과 전체 저주로 파티 전원을 서서히 침식한다. 육신이 스러져도 영혼의 성배가 남는 한 부활한다 전해진다.',
+    weakness:'마법 저항 장비가 필수. 저주를 받기 전 단숨에 화력을 집중할 것.',
+    habitat:'고대 유적 (보스)',
+    rank:'A', rankColor:'#ff8899',
+  },
+  guardian:{
+    fullName:'성기사 수호자 (Paladin Guardian)',
+    desc:'고대 유적을 지키도록 명받은 성기사의 망령. 극도로 높은 방어력과 신성 강타로 파티를 압박한다. 맹목적인 사명감에 사로잡혀 침입자를 결코 용서하지 않는다.',
+    weakness:'DEF가 매우 높아 약화 디버프가 핵심. 어둠 속성 공격에 취약하다.',
+    habitat:'고대 유적 3~5층',
+    rank:'A', rankColor:'#ff8899',
+  },
+  orc_chief:{
+    fullName:'오크 대족장 (Orc Chieftain)',
+    desc:'어둠의 탑 너머 숨겨진 협곡을 다스리는 오크 부족의 수장. 부족 최강의 전사로서 명예를 걸고 침입자를 시험한다. 포효로 스스로를 강화하며 연속 강습을 퍼붓는다.',
+    weakness:'속도가 느려 선제권 확보가 유리. 강화가 쌓이기 전 속전속결로 끝낼 것.',
+    habitat:'오크 협곡 (숨겨진 보스)',
+    rank:'A', rankColor:'#ff8899',
+  },
+  demon_lord:{
+    fullName:'마왕 마라키스 (Demon Lord Marakis)',
+    desc:'수천 년을 살아온 아르칸의 재앙. 브레스·어둠 마법·전체 저주를 자유자재로 구사하며 왕국 전체를 어둠으로 뒤덮으려 한다. 초대 국왕과 12영웅이 봉인했으나 300년 만에 다시 깨어났다.',
+    weakness:'결정적 약점은 없다. 파티 최강 조합과 충분한 강화 장비, 그리고 흔들림 없는 각오가 필요하다.',
+    habitat:'마왕의 성 최심층 (최종 보스)',
+    rank:'S', rankColor:'#c080ff',
+  },
 };
 
-const MONSTER_ORDER=['goblin','wolf','skeleton','spider','orc','golem','dragon'];
+const MONSTER_ORDER=['goblin','wolf','skeleton','spider','orc','bandit','vampire','lich','guardian','golem','dragon','orc_chief','demon_lord'];
 if(!G.discoveredMonsters) G.discoveredMonsters={};
 
 // 전투 시작 시 자동 발견 처리 — nextEncounter 이후 호출
@@ -2916,7 +2962,7 @@ function buildCodex(){
       <button class="action-tab ${codexTab==='char'?'active':''}" style="flex:1;font-size:12px;padding:8px 2px;"
         onclick="codexTab='char';buildCodex();">👤 인물 (${Object.keys(CHARS).length})</button>
       <button class="action-tab ${codexTab==='monster'?'active':''}" style="flex:1;font-size:12px;padding:8px 2px;"
-        onclick="codexTab='monster';buildCodex();">👾 몬스터 (${Object.keys(G.discoveredMonsters).length}/${MONSTER_ORDER.length})</button>
+        onclick="codexTab='monster';buildCodex();">👾 몬스터 (${MONSTER_ORDER.filter(m=>G.discoveredMonsters[m]).length}/${MONSTER_ORDER.length})</button>
     </div>`;
 
   if(codexTab==='char'){
@@ -2975,7 +3021,7 @@ function buildCodex(){
   const countEl=document.getElementById('codex-count');
   if(countEl){
     const total=Object.keys(CHARS).length+MONSTER_ORDER.length;
-    const got=Object.keys(CHARS).length+Object.keys(G.discoveredMonsters).length;
+    const got=Object.keys(CHARS).length+MONSTER_ORDER.filter(m=>G.discoveredMonsters[m]).length;
     countEl.textContent=`${got} / ${total} 수집`;
   }
 }

@@ -101,7 +101,7 @@ const CHARS = {
     element:{name:'강철',icon:'🗡',color:'#8b2222'},
     keywords:'정체성 위기·배신과 용서·전투 중심',
     story:'왕국 기사단에서 추방된 전직 기사. 명예를 되찾기 위해 싸운다.',
-    recruit:{cost:500, condition:'던전 2층 클리어'},
+    recruit:{cost:500, condition:'폐허 던전 클리어'},
     base:{hp:140,maxHp:140,mp:60,maxMp:60,atk:24,def:16,spd:10,level:1,xp:0,xpNext:100},
     equip:{weapon:null,armor:null,shield:null,accessory:null},
     skills:[
@@ -173,7 +173,7 @@ const CHARS = {
     element:{name:'어둠',icon:'🌑',color:'#800020'},
     keywords:'속죄·어둠의 힘·동료 보호',
     story:'왕국을 배신한 기사단의 생존자. 어둠의 힘을 빌려 속죄하기 위해 싸운다. 검은 갑옷과 붉은 망토.',
-    recruit:{cost:0, condition:'마왕의 성 진입'},
+    recruit:{cost:0, condition:'마왕 마라키스 격파'},
     base:{hp:160,maxHp:160,mp:70,maxMp:70,atk:32,def:20,spd:9,level:1,xp:0,xpNext:100},
     equip:{weapon:null,armor:null,shield:null,accessory:null},
     skills:[
@@ -214,6 +214,8 @@ const ENEMIES = {
     skills:['slam','holySmite','ironSkin','holySmite']},
   demon_lord:{id:'demon_lord',name:'마왕',emoji:'👿',hp:500,atk:45,def:20,spd:11,xp:600,gold:500,elementName:'어둠',
     skills:['darkMagic','breathe','slam','curseAll']},
+  orc_chief:{id:'orc_chief',name:'오크 대족장',emoji:'👹', hp:300,atk:32,def:13,spd:9, xp:280,gold:220,elementName:'대지',
+    skills:['powerAtk','basicAtk','roar','powerAtk']},
 };
 
 // 던전 구성표
@@ -257,6 +259,14 @@ const DUNGEONS = {
     bossIntro:{emoji:'👿',title:'⚠⚠ 최종 보스 ⚠⚠',name:'마왕 마라키스 (Demon Lord Marakis)',desc:'아르칸 왕국을 지배하려는 마왕.\n브레스·어둠 마법·전체 저주를 구사한다.\n파티 최강 조합이 필요하다!'},
     bossPhase2Hp:0.35, bossPhase2Skills:['breathe','curseAll','breathe','darkMagic','breathe','curseAll'],
     bossPhase2Msg:'💥 마왕 마라키스 격노! 어둠의 브레스가 왕국 전체를 뒤덮는다!!!',
+  },
+  dungeonSecret:{
+    name:'오크 협곡', floors:4,
+    encounters:[['orc','wolf'],['orc','orc'],['bandit','orc'],['orc','spider','wolf']],
+    boss:'orc_chief',
+    bossIntro:{emoji:'👹',title:'숨겨진 보스 등장!',name:'오크 대족장 (Orc Chieftain)',desc:'어둠의 탑 너머 협곡을 지배하는 오크 부족의 수장.\n부족의 명예를 걸고 침입자를 시험한다.\n포효로 자신을 강화하니 속전속결이 핵심!'},
+    bossPhase2Hp:0.45, bossPhase2Skills:['powerAtk','roar','powerAtk','basicAtk','powerAtk','roar'],
+    bossPhase2Msg:'💢 오크 대족장이 분노한다! 부족의 함성과 함께 연속 강습을 퍼붓는다!',
   },
 };
 
@@ -334,12 +344,13 @@ const MAP_NODES = [
   {id:'dungeon3',name:'왕성 지하',   icon:'🏰', x:40, y:72, action:'dungeon',unlocked:false, dungeonId:'dungeon3'},
   {id:'dungeon4',name:'고대 유적',   icon:'🏛', x:18, y:36, action:'dungeon',unlocked:false, dungeonId:'dungeon4'},
   {id:'dungeon5',name:'마왕의 성',   icon:'💀', x:80, y:22, action:'dungeon',unlocked:false, dungeonId:'dungeon5'},
-  {id:'secret1', name:'???',         icon:'❓',  x:50, y:88, action:'locked', unlocked:false},
+  {id:'secret1', name:'???',         icon:'❓',  x:50, y:88, action:'dungeon', unlocked:false, dungeonId:'dungeonSecret'},
 ];
 const MAP_EDGES = [
   ['town1','dungeon1'],['dungeon1','dungeon2'],
   ['dungeon1','dungeon3'],['dungeon3','dungeon4'],
   ['dungeon2','dungeon5'],['dungeon4','dungeon5'],
+  ['dungeon2','secret1'],
 ];
 
 // ══════════════════════════════════
