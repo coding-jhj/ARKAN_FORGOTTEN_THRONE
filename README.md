@@ -1,7 +1,7 @@
 # ⚔ 아르칸: 잊혀진 왕좌 — Kingdom of Arkan RPG
-### 🎮 [▶ 지금 바로 플레이하기](https://coding-jhj.github.io/ARKAN_FORGOTTEN_THRONE/ARKAN-FORGOTTEN-THRONE.html)
-[![Play](https://img.shields.io/badge/▶%20PLAY%20NOW-FF6B6B?style=for-the-badge)](https://coding-jhj.github.io/ARKAN_FORGOTTEN_THRONE/ARKAN-FORGOTTEN-THRONE.html)
-[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-배포중-4CAF50?style=for-the-badge&logo=github)](https://coding-jhj.github.io/ARKAN_FORGOTTEN_THRONE/ARKAN-FORGOTTEN-THRONE.html)
+### 🎮 [▶ 지금 바로 플레이하기](https://coding-jhj.github.io/ARKAN_FORGOTTEN_THRONE/)
+[![Play](https://img.shields.io/badge/▶%20PLAY%20NOW-FF6B6B?style=for-the-badge)](https://coding-jhj.github.io/ARKAN_FORGOTTEN_THRONE/)
+[![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-배포중-4CAF50?style=for-the-badge&logo=github)](https://coding-jhj.github.io/ARKAN_FORGOTTEN_THRONE/)
 ![HTML](https://img.shields.io/badge/HTML5-단일%20파일-E34F26?style=for-the-badge&logo=html5&logoColor=white)
 > *왕좌는 잊혀졌고, 왕국은 어둠에 잠겼다.*  
 > *여섯 명의 영웅이 다시 빛을 찾아 나선다.*
@@ -63,7 +63,8 @@
 HTML5 / CSS3 / Vanilla JavaScript
 ├── Canvas API     — 마인크래프트 스타일 픽셀 블록 배경
 ├── Press Start 2P — 픽셀 폰트 (Google Fonts)
-└── 단일 HTML 파일 — 외부 의존성 없음, 설치 불필요
+├── 모듈 분리       — HTML / CSS / JS(데이터·로직·배경) 파일 분리
+└── 빌드 불필요     — 외부 런타임 의존성 없음, 정적 호스팅(GitHub Pages)
 ```
 
 ---
@@ -71,14 +72,25 @@ HTML5 / CSS3 / Vanilla JavaScript
 ```bash
 git clone https://github.com/coding-jhj/ARKAN_FORGOTTEN_THRONE.git
 cd ARKAN_FORGOTTEN_THRONE
-# ARKAN-FORGOTTEN-THRONE.html 을 브라우저로 열기
+# 정적 서버로 실행 (권장)
+python -m http.server 8000   # → http://localhost:8000/index.html
+# 또는 index.html 을 브라우저로 직접 열기
 ```
 
 ---
 ## 📁 파일 구조
 ```
 ARKAN_FORGOTTEN_THRONE/
-├── ARKAN-FORGOTTEN-THRONE.html  ← 게임 전체 (HTML + CSS + JS 올인원)
+├── index.html              ← 엔트리 (마크업 + 에셋/스크립트 로드)
+├── css/
+│   └── styles.css          ← 전체 스타일
+├── js/
+│   ├── sprites.js          ← 적 스프라이트 맵
+│   ├── data.js             ← 게임 데이터 (파티·아이템·적·던전·NPC·맵)
+│   ├── game.js             ← 게임 로직 (화면·길드·상점·파티·전투·세이브·도감)
+│   └── background.js       ← 절차적 픽셀아트 배경 렌더러
+├── assets/
+│   └── sprites/            ← 추출된 픽셀 스프라이트 (webp/jpg)
 └── README.md
 ```
 
