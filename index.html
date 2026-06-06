@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>아르칸: 잊혀진 왕좌 — 픽셀 RPG 브라우저 게임</title>
+
+<!-- ── SEO ── -->
+<meta name="description" content="아르칸 왕국을 구하라! 브라우저에서 즐기는 무료 픽셀 아트 RPG. 파티 편성, 던전 공략, 강화 시스템이 가득한 판타지 어드벤처.">
+<meta name="keywords" content="픽셀 RPG, 브라우저 게임, 아르칸, 무료 게임, 판타지 RPG, pixel art game">
+<meta name="author" content="Arkan Studio">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://arkan-rpg.com/">
+
+<!-- ── Open Graph (SNS 공유) ── -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="아르칸: 잊혀진 왕좌 — 픽셀 RPG">
+<meta property="og:description" content="브라우저에서 즐기는 무료 픽셀 아트 RPG. 파티를 편성하고 마왕을 처치하라!">
+<meta property="og:url" content="https://arkan-rpg.com/">
+<meta property="og:image" content="https://arkan-rpg.com/og-image.png">
+<meta property="og:locale" content="ko_KR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="아르칸: 잊혀진 왕좌 — 픽셀 RPG">
+<meta name="twitter:description" content="브라우저에서 즐기는 무료 픽셀 아트 RPG!">
+
+<!-- ── PWA (홈화면 추가 지원) ── -->
+<meta name="theme-color" content="#080514">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="아르칸 RPG">
+<!-- <link rel="manifest" href="/manifest.json"> -->
+<!-- <link rel="apple-touch-icon" href="/icon-192.png"> -->
+
+<!-- ── Google AdSense 준비 (배포 시 활성화) ── -->
+<!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXXXXXX" crossorigin="anonymous"></script> -->
+
+<!-- ── Analytics 준비 (배포 시 활성화) ── -->
+<!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script> -->
+<!-- <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-XXXXXXXXXX');</script> -->
+
+<link rel="stylesheet" href="css/styles.css">
+<body>
+
+<!-- star field removed -->
+<div class="page">
+
+<!-- ══ TITLE ══ -->
+<div id="s-title" class="screen active">
+
+  <!-- 장식 픽셀 요소들 -->
+  <div style="position:absolute;inset:0;pointer-events:none !important;overflow:hidden;z-index:0;">
+    <!-- 좌상단 룬 문자 장식 -->
+    <div style="position:absolute;top:8%;left:6%;font-size:28px;color:rgba(192,128,255,.15);line-height:1.6;pointer-events:none;">
+      ✦<br>◈<br>✦
+    </div>
+    <!-- 우상단 -->
+    <div style="position:absolute;top:8%;right:6%;font-size:28px;color:rgba(192,128,255,.15);line-height:1.6;text-align:right;pointer-events:none;">
+      ✦<br>◈<br>✦
+    </div>
+    <!-- 하단 장식선 -->
+    <div style="position:absolute;bottom:12%;left:50%;transform:translateX(-50%);font-size:13px;color:rgba(200,160,255,.25);white-space:nowrap;letter-spacing:.3em;pointer-events:none;">
+      · · · ARKAN KINGDOM · · ·
+    </div>
+    <!-- 좌하단 검 아이콘 -->
+    <div style="position:absolute;bottom:18%;left:8%;font-size:42px;color:rgba(255,215,0,.08);transform:rotate(-45deg);pointer-events:none;">⚔</div>
+    <!-- 우하단 -->
+    <div style="position:absolute;bottom:18%;right:8%;font-size:42px;color:rgba(255,215,0,.08);transform:rotate(45deg);pointer-events:none;">⚔</div>
+  </div>
+  <div class="title-logo">
+    <h1>아르칸 왕국</h1>
+    <p>KINGDOM OF ARKAN — RPG</p>
+  </div>
+  <div class="title-btns">
+    <button class="btn-title primary" onclick="startNewGame()">▶ 새 게임</button>
+    <button class="btn-title" onclick="openSaveModal('load-title')">📂 불러오기</button>
+    <button class="btn-title" onclick="gotoScreen('s-world')" style="font-size:11px;color:var(--text3)">⚔ 이어하기 (저장 없이)</button>
+  </div>
+
+  <!-- ── 광고 배너 슬롯 (배포 시 AdSense 코드로 교체) ── -->
+  <div id="ad-title-banner" style="display:none !important;visibility:hidden;pointer-events:none;position:absolute;width:0;height:0;overflow:hidden;">
+    <!-- AdSense 배너 자리 (320×50) -->
+    <!-- <ins class="adsbygoogle" style="display:inline-block;width:320px;height:50px" data-ad-client="ca-pub-XXXX" data-ad-slot="XXXX"></ins> -->
+    AD SLOT
+  </div>
+</div>
+
+<!-- ══ WORLD MAP ══ -->
+<div id="s-world" class="screen">
+<img class="px-bg-img" src="assets/sprites/px_bg_img.webp" alt="">
+
+  <div class="world-header">
+    <h2>🗺 아르칸 왕국</h2>
+    <div class="party-bar" id="party-bar-world"></div>
+    <div class="gold-display">🪙 <span id="gold-display">0</span></div>
+  </div>
+  <div class="world-map" id="world-map" style="background-image:url('assets/sprites/world_map.webp');background-size:cover;background-position:center;">
+    <!-- 픽셀 지형 캔버스 -->
+    <canvas id="map-terrain-canvas"></canvas>
+    <!-- 경로선 SVG -->
+    <svg class="map-path" id="map-paths"></svg>
+  </div>
+</div>
+
+<!-- ══ TOWN ══ -->
+<div id="s-town" class="screen">
+<img class="px-bg-img" src="assets/sprites/px_bg_img_2.webp" alt="">
+
+  <div class="town-header">
+    <button class="btn-back" onclick="gotoScreen('s-world')">← 지도</button>
+    <h2 id="town-name">🏘 아르칸 마을</h2>
+    <div style="margin-left:auto;display:flex;align-items:center;gap:8px;">
+      <div class="gold-display">🪙 <span id="town-gold">0</span></div>
+      <button class="px-btn" style="padding:7px 12px;font-size:11px;" onclick="openSaveModal('save')">💾 저장</button>
+    </div>
+  </div>
+  <div class="town-grid">
+    <div class="town-card" onclick="gotoScreen('s-guild')">
+      <div class="town-card-icon">⚔</div>
+      <h3>모험가 길드</h3>
+      <p>파티를 편성하고 던전에 도전하세요</p>
+    </div>
+    <div class="town-card" onclick="gotoScreen('s-shop')">
+      <div class="town-card-icon">🏪</div>
+      <h3>상점</h3>
+      <p>무기·방어구·포션을 구매하세요</p>
+    </div>
+    <div class="town-card" onclick="openNPC('elder')">
+      <div class="town-card-icon">📜</div>
+      <h3>마을 장로</h3>
+      <p>퀘스트와 왕국의 역사를 들어보세요</p>
+    </div>
+    <div class="town-card" onclick="gotoScreen('s-status');buildStatusScreen()">
+      <div class="town-card-icon">👥</div>
+      <h3>파티 현황</h3>
+      <p>캐릭터 스탯과 장비를 확인하세요</p>
+    </div>
+    <div class="town-card" onclick="gotoScreen('s-codex');buildCodex()" style="grid-column:span 2;">
+      <div class="town-card-icon">📖</div>
+      <h3>인물 도감</h3>
+      <p>왕국의 모험가들과 그들의 이야기, 스킬을 열람하세요</p>
+    </div>
+    <div class="town-card" onclick="gotoScreen('s-forge');buildForge()" style="grid-column:span 2;">
+      <div class="town-card-icon">⚒</div>
+      <h3>대장간</h3>
+      <p>장비를 강화하고 재료를 합성해 더 강한 무기를 만드세요</p>
+    </div>
+  </div>
+</div>
+
+<!-- ══ GUILD ══ -->
+<div id="s-guild" class="screen">
+<img class="px-bg-img" src="assets/sprites/px_bg_img_3.webp" alt="">
+
+  <div class="town-header">
+    <button class="btn-back" onclick="gotoScreen('s-town')">← 마을</button>
+    <h2>⚔ 모험가 길드</h2>
+    <div class="gold-display" style="margin-left:auto;">🪙 <span id="guild-gold">0</span></div>
+  </div>
+  <div class="guild-layout">
+    <div class="guild-left">
+      <div class="guild-section-title">▸ 등록된 모험가</div>
+      <div id="char-roster"></div>
+    </div>
+    <div class="guild-right">
+      <div class="guild-section-title">▸ 파티 편성 (최대 3명)</div>
+      <div id="party-slots"></div>
+      <div class="guild-section-title" style="margin-top:16px;">▸ 파티 합산 스탯</div>
+      <div class="party-stat-block" id="party-stats"></div>
+      <button class="btn-start-dungeon" id="btn-dungeon" onclick="startDungeon()" disabled>
+        ⚔ 던전 입장
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SHOP ══ -->
+<div id="s-shop" class="screen">
+<img class="px-bg-img" src="assets/sprites/px_bg_img_4.webp" alt="">
+
+  <div class="town-header">
+    <button class="btn-back" onclick="gotoScreen('s-town')">← 마을</button>
+    <h2>🏪 상점</h2>
+    <div class="gold-display" style="margin-left:auto;">🪙 <span id="shop-gold">0</span></div>
+  </div>
+  <div class="shop-layout">
+    <div class="shop-left">
+      <div class="guild-section-title">▸ 판매 목록</div>
+      <div id="shop-items"></div>
+    </div>
+    <div class="shop-right">
+      <div class="guild-section-title">▸ 아이템 정보</div>
+      <div id="item-detail-panel"></div>
+      <div class="guild-section-title" style="margin-top:16px;">▸ 인벤토리</div>
+      <div id="inventory-list"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ NPC ══ -->
+<div id="s-npc" class="screen">
+<img class="px-bg-img" src="assets/sprites/px_bg_img_5.webp" alt="">
+
+  <div class="town-header">
+    <button class="btn-back" onclick="gotoScreen('s-town')">← 마을</button>
+    <h2 id="npc-screen-title">NPC</h2>
+  </div>
+  <div class="npc-layout">
+    <div class="npc-portrait" id="npc-portrait">
+      <div class="npc-portrait-art" id="npc-art"></div>
+      <div class="npc-portrait-role" id="npc-role"></div>
+      <div class="npc-portrait-name" id="npc-name-display"></div>
+    </div>
+    <div class="npc-dialog-box">
+      <div class="npc-text" id="npc-text"></div>
+      <div class="npc-choices" id="npc-choices"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ BATTLE ══ -->
+<div id="s-battle" class="screen">
+<img class="px-bg-img" src="assets/sprites/px_bg_img_6.webp" alt="">
+
+  <div class="dungeon-info">
+    <span class="dungeon-floor" id="dungeon-floor-label">B1F</span>
+    <div class="dungeon-progress"><div class="dungeon-progress-fill" id="dungeon-progress"></div></div>
+    <span class="dungeon-encounter" id="dungeon-enc-label">1 / 5</span>
+  </div>
+  <div class="battle-layout">
+    <div class="battle-arena" id="battle-arena">
+      <!-- 배경 장식 -->
+      <div style="position:absolute;inset:0;pointer-events:none;overflow:hidden;">
+        <!-- 기둥 왼쪽 -->
+        <div style="position:absolute;left:2%;top:0;bottom:20px;width:18px;background:linear-gradient(180deg,#2a1060 0%,#1a0840 100%);box-shadow:inset -2px 0 0 rgba(255,215,0,.08),2px 0 0 rgba(0,0,0,.4);"></div>
+        <!-- 기둥 오른쪽 -->
+        <div style="position:absolute;right:2%;top:0;bottom:20px;width:18px;background:linear-gradient(180deg,#2a1060 0%,#1a0840 100%);box-shadow:inset 2px 0 0 rgba(255,215,0,.08),-2px 0 0 rgba(0,0,0,.4);"></div>
+        <!-- 천장 아치 -->
+        <div style="position:absolute;top:0;left:0;right:0;height:8px;background:linear-gradient(180deg,#3a1880,transparent);"></div>
+        <!-- 횃불 왼쪽 -->
+        <div style="position:absolute;left:4%;top:10px;font-size:20px;opacity:.7;">🔥</div>
+        <!-- 횃불 오른쪽 -->
+        <div style="position:absolute;right:4%;top:10px;font-size:20px;opacity:.7;">🔥</div>
+        <!-- 마법진 중앙 바닥 -->
+        <div style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);width:120px;height:8px;background:radial-gradient(ellipse,rgba(180,80,255,.18),transparent);border-radius:50%;"></div>
+      </div>
+      <div class="arena-floor"></div>
+      <div class="battle-party" id="battle-party"></div>
+      <div class="battle-enemy-group" id="battle-enemies"></div>
+    </div>
+    <div class="battle-hud" id="battle-hud"></div>
+    <div class="battle-log" id="battle-log"></div>
+    <div class="battle-actions" id="battle-actions">
+      <div class="turn-indicator">
+        <div class="turn-dot"></div>
+        <span id="turn-char-name">대기 중...</span>의 차례
+        <span style="margin-left:auto;font-size:12px;color:var(--text3);">TURN <span id="turn-count">1</span></span>
+      </div>
+      <div class="action-tabs">
+        <button class="action-tab active" onclick="switchActionTab('attack',this)">공격</button>
+        <button class="action-tab" onclick="switchActionTab('skill',this)">스킬</button>
+        <button class="action-tab" onclick="switchActionTab('item',this)">아이템</button>
+        <button class="action-tab" onclick="switchActionTab('other',this)">기타</button>
+      </div>
+      <div class="action-grid" id="action-grid"></div>
+      <div class="enemy-turn-overlay" id="enemy-overlay" style="display:none">— 적의 차례 —</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ STATUS ══ -->
+<div id="s-status" class="screen">
+<img class="px-bg-img" src="assets/sprites/px_bg_img_7.webp" alt="">
+
+  <div class="town-header">
+    <button class="btn-back" onclick="gotoScreen('s-town')">← 마을</button>
+    <h2>👥 파티 현황</h2>
+  </div>
+  <div style="display:flex;gap:0;overflow-y:auto;flex:1;">
+    <div style="width:150px;flex-shrink:0;border-right:2px solid var(--b1);padding:14px;background:linear-gradient(180deg,#1e1240 0%,#120c30 100%);">
+      <div id="status-char-list"></div>
+    </div>
+    <div style="flex:1;overflow-y:auto;background:var(--bg2);" id="status-detail"></div>
+  </div>
+</div>
+
+<!-- ══ CODEX (인물도감) ══ -->
+<div id="s-codex" class="screen">
+<img class="px-bg-img" src="assets/sprites/px_bg_img_8.webp" alt="">
+
+  <div class="town-header">
+    <button class="btn-back" onclick="gotoScreen('s-town')">← 마을</button>
+    <h2>📖 인물 도감</h2>
+    <div style="margin-left:auto;font-size:12px;color:var(--text3);" id="codex-count"></div>
+  </div>
+  <div class="codex-layout">
+    <div class="codex-list" id="codex-list"></div>
+    <div class="codex-detail" id="codex-detail">
+      <div class="codex-empty">
+        <div class="codex-empty-icon">📖</div>
+        <div class="codex-empty-text">← 좌측에서 캐릭터를<br>선택하세요</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FORGE (대장간) ══ -->
+<div id="s-forge" class="screen">
+<img class="px-bg-img" src="assets/sprites/px_bg_img_9.webp" alt="">
+
+  <div class="town-header">
+    <button class="btn-back" onclick="gotoScreen('s-town')">← 마을</button>
+    <h2>⚒ 대장간</h2>
+    <div class="gold-display" style="margin-left:auto;">🪙 <span id="forge-gold">0</span></div>
+  </div>
+  <div class="forge-layout" id="forge-layout">
+    <!-- JS로 렌더링 -->
+  </div>
+</div>
+
+<!-- ══ ENDING ══ -->
+<div id="s-ending" class="screen">
+  <div class="ending-overlay"></div>
+  <canvas class="ending-stars-canvas" id="ending-stars"></canvas>
+  <div class="ending-content">
+    <div class="ending-chapter">— EPILOGUE —</div>
+    <div class="ending-crown">👑</div>
+    <div class="ending-title">아르칸 왕국의<br>여명</div>
+    <div class="ending-subtitle">THE DAWN OF ARKAN KINGDOM</div>
+    <div class="ending-divider"></div>
+    <div class="ending-story" id="ending-story-text">
+      마왕 마라키스가 쓰러졌다.<br>
+      500년 만에 왕국에 진정한 평화가 찾아왔다.
+    </div>
+    <div class="ending-party-row" id="ending-party-row"></div>
+    <div class="ending-stats-box" id="ending-stats-box"></div>
+    <div class="ending-btns">
+      <button class="btn-ending" onclick="gotoScreen('s-world')">🗺 계속 플레이</button>
+      <button class="btn-ending secondary" onclick="startNewGame()">↺ 처음부터 다시</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══ RESULT ══ -->
+<div id="s-result" class="screen">
+<img class="px-bg-img" src="assets/sprites/px_bg_img_10.webp" alt="">
+
+  <!-- 결과 배경 장식 -->
+  <div style="position:absolute;inset:0;pointer-events:none;z-index:0;">
+    <div style="position:absolute;top:15%;left:50%;transform:translateX(-50%);font-size:80px;opacity:.04;pointer-events:none;">⚔</div>
+  </div>
+  <div class="result-icon" id="result-icon">⭐</div>
+  <div class="result-title" id="result-title">승리!</div>
+  <div class="result-rewards" id="result-rewards"></div>
+
+  <!-- ── 전투 후 광고 배너 슬롯 ── -->
+  <div id="ad-result-banner" style="
+    width:300px;min-height:50px;margin:12px 0;
+    background:rgba(10,6,28,0.6);
+    border:1px dashed rgba(100,60,200,0.25);
+    display:flex;align-items:center;justify-content:center;
+    font-size:10px;color:rgba(150,120,200,0.35);
+    font-family:'Press Start 2P',monospace;
+    position:relative;z-index:1;
+  ">
+    <!-- <ins class="adsbygoogle" style="display:inline-block;width:300px;height:50px" data-ad-client="ca-pub-XXXX" data-ad-slot="YYYY"></ins> -->
+    AD SLOT
+  </div>
+
+  <button class="btn-primary" onclick="afterBattle()">▶ 계속하기</button>
+</div>
+
+</div><!-- /page -->
+
+<script src="js/sprites.js"></script>
+<script src="js/data.js"></script>
+<script src="js/game.js"></script>
+<script src="js/background.js"></script>
+
+</body>
+
+<!--
+════════════════════════════════════════════════════════════
+  아르칸: 잊혀진 왕좌 — 배포 & 수익화 체크리스트 v1
+════════════════════════════════════════════════════════════
+
+【 즉시 배포 가능한 플랫폼 】
+  ✅ GitHub Pages    — 무료, 정적 HTML 1파일 그대로 업로드
+  ✅ Netlify         — drag & drop 배포, 커스텀 도메인 무료
+  ✅ Vercel          — Netlify와 동일, 속도 더 빠름
+  ✅ itch.io         — 인디 게임 전용 플랫폼, 한국 개발자 많음
+
+【 배포 전 체크리스트 】
+  □ 도메인 확보 (arkan-rpg.com 등)
+  □ og-image.png 제작 (1200×630px) — SNS 공유 썸네일
+  □ icon-192.png / icon-512.png 제작 — PWA 아이콘
+  □ manifest.json 생성 (PWA 홈화면 추가)
+  □ favicon.ico 추가
+  □ robots.txt 생성
+  □ sitemap.xml 생성
+
+【 수익화 단계별 전략 】
+
+  1단계 — Google AdSense (가장 쉬움)
+    - AdSense 신청 (월 트래픽 수천명이면 승인 가능)
+    - 타이틀 하단 배너 (320×50): id="ad-title-banner" 자리에 삽입
+    - 전투 결과 배너 (300×250): id="ad-result-banner" 자리에 삽입
+    - 던전 입장 전 전면광고: startDungeon() 함수 앞에 광고 호출 삽입
+    예상 수익: MAU 1만 기준 월 3~10만원
+
+  2단계 — itch.io 유료 판매
+    - "Pay what you want" 모델 (최소 0원, 권장 2,000원)
+    - 프리미엄 버전: 추가 캐릭터/던전 DLC
+    예상 수익: 초기 팬 100명 기준 10~30만원
+
+  3단계 — 후원 모델
+    - Toss 후원 링크 / Buy Me a Coffee
+    - 게임 내 크레딧에 후원자 이름 등재
+    후원자 특전: 숨겨진 캐릭터 해금 코드 지급
+
+  4단계 — 인앱 결제 (중장기)
+    - 캐릭터 스킨 / 프리미엄 캐릭터 해금
+    - 서버 저장 기능 (Firebase 연동, 무료 티어 활용)
+    - 광고 제거권 (일회성 결제 1,000~2,000원)
+
+【 localStorage → 서버 저장 마이그레이션 】
+  현재: localStorage (브라우저 캐시 삭제 시 데이터 소실)
+  개선: Firebase Firestore (무료 티어 충분)
+  작업량: 약 2~3시간 (saveGame/loadGame 함수만 수정)
+
+【 모바일 최적화 추가 작업 】
+  - 화면 최소 폰트 최적화 (Press Start 2P 10px 미만 주의)
+  - 전투 화면 세로 레이아웃 개선
+  - 터치 피드백 (진동 API: navigator.vibrate(30))
+
+════════════════════════════════════════════════════════════
+-->
+</html>
