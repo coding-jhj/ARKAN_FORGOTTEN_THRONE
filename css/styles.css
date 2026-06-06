@@ -33,7 +33,7 @@
 *{margin:0;padding:0;box-sizing:border-box;image-rendering:pixelated;}
 
 html,body{
-  width:100%;height:100vh;
+  width:100%;height:100dvh;
   background:var(--bg);
   color:var(--text);
   font-family:'Press Start 2P',monospace;
@@ -42,8 +42,8 @@ html,body{
 }
 
 /* ── 기본 화면 전환 ── */
-.screen{display:none;width:100%;height:100vh;overflow:hidden;position:absolute;inset:0;}
-.screen.active{display:flex;flex-direction:column;height:100vh;overflow:hidden;}
+.screen{display:none;width:100%;height:100dvh;overflow:hidden;position:absolute;inset:0;}
+.screen.active{display:flex;flex-direction:column;height:100dvh;overflow:hidden;}
 @keyframes fadeUp{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:translateY(0)}}
 @keyframes floatY{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
 @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
@@ -108,7 +108,7 @@ html,body{
    ════════════════════════════════ */
 .forge-layout{
   display:grid;grid-template-columns:1fr 1fr;
-  min-height:calc(100vh - 54px);overflow-y:auto;
+  min-height:calc(100dvh - 54px);overflow-y:auto;
 }
 .forge-left{border-right:2px solid var(--b1);padding:16px;overflow-y:auto;}
 .forge-right{padding:16px;overflow-y:auto;}
@@ -424,7 +424,6 @@ html,body{
 #s-title{
   align-items:center;justify-content:center;text-align:center;
   position:relative;overflow:hidden;
-  display:flex;flex-direction:column;
   background-image:url('../assets/sprites/title_bg.webp');
   background-size:cover;
   background-position:center bottom;
@@ -570,7 +569,7 @@ z-index:5;}
   overflow-y:auto;
   background:#030c05;
 }
-.guild-layout{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 54px);}
+.guild-layout{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100dvh - 54px);}
 .guild-left{border-right:2px solid var(--b1);padding:16px;overflow-y:auto;}
 .guild-right{padding:16px;overflow-y:auto;}
 .guild-section-title{font-size:12px;color:var(--gold);text-shadow:0 0 8px rgba(255,215,0,.3);margin-bottom:12px;padding-bottom:6px;border-bottom:1px solid var(--b1);}
@@ -638,7 +637,7 @@ z-index:5;}
   overflow-y:auto;
   background:#0c0800;
 }
-.shop-layout{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100vh - 54px);}
+.shop-layout{display:grid;grid-template-columns:1fr 1fr;min-height:calc(100dvh - 54px);}
 .shop-left{border-right:2px solid var(--b1);padding:16px;overflow-y:auto;}
 .shop-right{padding:16px;overflow-y:auto;}
 .shop-item{
@@ -676,7 +675,7 @@ z-index:5;}
 #s-npc{
   background:#000810;
 }
-.npc-layout{display:flex;flex-direction:column;height:calc(100vh - 54px);}
+.npc-layout{display:flex;flex-direction:column;height:calc(100dvh - 54px);}
 .npc-portrait{height:230px;position:relative;overflow:hidden;background:rgba(8,5,22,0.72);border-bottom:2px solid var(--b1);display:flex;align-items:center;justify-content:center;}
 .npc-portrait::after{content:'';position:absolute;bottom:0;left:0;right:0;height:70px;background:linear-gradient(0deg,#180c38,transparent);}
 .npc-portrait-name{position:absolute;bottom:14px;left:18px;z-index:2;font-size:14px;color:var(--gold2);text-shadow:0 0 10px rgba(255,215,0,.5),1px 1px 0 #000;}
@@ -700,7 +699,7 @@ z-index:5;}
   overflow:hidden;
   background:#080000;
 }
-.battle-layout{display:flex;flex-direction:column;height:100vh;}
+.battle-layout{display:flex;flex-direction:column;height:100dvh;}
 .dungeon-info{display:flex;align-items:center;gap:12px;padding:10px 16px;background:rgba(10,6,28,0.80);border-bottom:2px solid var(--b1);flex-shrink:0;}
 .dungeon-floor{font-size:13px;color:var(--gold2);text-shadow:0 0 8px rgba(255,215,0,.4);}
 .dungeon-progress{flex:1;height:10px;background:#111;box-shadow:0 0 0 1px var(--b1);}
@@ -844,7 +843,7 @@ canvas.px-bg {
 /* UI 요소들은 canvas 위로 */
 
 /* ════ CODEX LAYOUT ════ */
-.codex-layout{display:grid;grid-template-columns:220px 1fr;height:calc(100vh - 54px);overflow:hidden;}
+.codex-layout{display:grid;grid-template-columns:220px 1fr;height:calc(100dvh - 54px);overflow:hidden;}
 .codex-list{border-right:2px solid var(--b1);overflow-y:auto;background:rgba(5,3,18,0.82);padding:8px;}
 .codex-detail{overflow-y:auto;padding:16px;background:rgba(5,3,18,0.75);}
 .codex-entry{display:flex;align-items:center;gap:8px;padding:8px;margin-bottom:4px;cursor:pointer;background:rgba(8,5,22,0.72);box-shadow:inset 2px 2px 0 rgba(255,255,255,.04),inset -2px -2px 0 rgba(0,0,0,.5),0 0 0 1px var(--b1);border:1px solid transparent;transition:filter .08s,border-color .08s;}
@@ -943,10 +942,10 @@ canvas.px-bg { display: none !important; }
 #map-terrain-canvas { opacity: 0 !important; }
 
 /* .page 래퍼 — 뷰포트 고정 컨테이너 */
-.page { position:fixed; inset:0; width:100%; height:100vh; overflow:hidden; }
+.page { position:fixed; inset:0; width:100%; height:100dvh; overflow:hidden; }
 
 /* .screen: absolute로 .page 안에서 겹치되, 비활성 화면은 뒤로 */
-.screen { display:none; position:absolute; inset:0; width:100%; height:100vh; overflow:hidden; z-index:1; }
+.screen { display:none; position:absolute; inset:0; width:100%; height:100dvh; overflow:hidden; z-index:1; }
 .screen.active { display:flex; flex-direction:column; z-index:10; }
 
 /* world-map은 남은 공간 채우기 */
@@ -979,3 +978,29 @@ canvas.px-bg { display: none !important; }
 /* 아이템 아이콘 */
 .forge-item-icon img { width:1.6em; height:1.6em; vertical-align:middle; image-rendering:pixelated; }
 
+/* ════════════════════════════════
+   모바일 반응형 (≤480px) — 2열 레이아웃 1열 collapse, 화면 단위 단일 스크롤
+   ════════════════════════════════ */
+@media (max-width:480px){
+  #s-guild.active,#s-shop.active,#s-forge.active,#s-codex.active,#s-town.active{overflow-y:auto;}
+  .guild-layout,.shop-layout,.forge-layout{grid-template-columns:1fr;min-height:0;}
+  .guild-left,.shop-left,.forge-left{border-right:none;border-bottom:2px solid var(--b1);}
+  .guild-left,.guild-right,.shop-left,.shop-right,.forge-left,.forge-right{overflow:visible;}
+  .codex-layout{grid-template-columns:1fr;height:auto;overflow:visible;}
+  .codex-list,.codex-detail{overflow:visible;}
+  .codex-list{border-right:none;border-bottom:2px solid var(--b1);}
+  .town-grid{grid-template-columns:1fr;flex:none;}
+  .town-card{grid-column:auto !important;}
+  .save-modal-box{width:auto;max-width:calc(100vw - 24px);}
+  .title-btns{width:auto;max-width:calc(100vw - 32px);}
+  .btn-back,.btn-title,.px-btn,.action-tab,.btn-start-dungeon{min-height:44px;}
+}
+
+/* ── 터치 피드백(호버 없는 터치기기) + 키보드 포커스 가시성 ── */
+.px-btn:active,.btn-title:active,.btn-back:active,.action-tab:active,.town-card:active,.char-card:active,.btn-primary:active{filter:brightness(1.3);}
+button:focus-visible,[onclick]:focus-visible,.action-tab:focus-visible{outline:2px solid var(--gold);outline-offset:2px;}
+
+@media (max-width:480px){
+  .status-detail-grid{grid-template-columns:1fr !important;}
+  .status-detail-grid > div{border-right:none !important;}
+}

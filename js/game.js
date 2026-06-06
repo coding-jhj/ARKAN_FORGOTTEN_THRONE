@@ -1029,7 +1029,7 @@ function renderCharDetail(cid){
     </div>`;
   }).join('');
   el.innerHTML=`
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
+    <div class="status-detail-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:0;">
       <div style="padding:16px;border-right:1px solid var(--b1);">
         <div class="char-portrait-big">${svg}</div>
         <div style="text-align:center;margin-bottom:14px;">
