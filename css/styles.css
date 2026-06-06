@@ -119,7 +119,7 @@ html,body{
 .forge-section-title::before{content:'⚒ ';}
 .forge-tab-row{display:flex;gap:0;margin-bottom:14px;}
 .forge-tab{
-  flex:1;padding:9px;font-family:'Press Start 2P',monospace;font-size:11px;
+  flex:1;padding:8px 4px;font-family:'Press Start 2P',monospace;font-size:9px;word-break:keep-all;line-height:1.4;
   cursor:pointer;border:none;background:var(--panel2);color:var(--text3);
   box-shadow:0 0 0 1px var(--b1);transition:filter .08s;
 }
