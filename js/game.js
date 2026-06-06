@@ -2321,6 +2321,9 @@ const UPGRADE_RECIPES = {
     {lv:5,mats:{dragon_scale:3,dark_shard:2},gold:1100,bonus:{atk:12}},
   ],
 };
+// 강화 대상 아이템의 원본 스탯 스냅샷(스크립트 로드 시 1회). 세이브 로드 시 여기서 리셋 후 재적용해 중복/유령 강화를 막는다.
+const _ITEM_BASE_STATS = {};
+Object.keys(UPGRADE_RECIPES).forEach(id=>{ if(ITEMS[id]) _ITEM_BASE_STATS[id]=JSON.parse(JSON.stringify(ITEMS[id].stat||{})); });
 
 const SYNTH_RECIPES = [
   {id:'synth1',name:'강철 검 합성',desc:'철제 검 +4 이상 → 강철 검 (ATK+20)',
@@ -2677,16 +2680,15 @@ function applySaveData(data){
   G.materials=JSON.parse(JSON.stringify(data.materials||{}));
   G.upgradeLevels={...data.upgradeLevels||{}};
   // 강화 레벨 → ITEMS 스탯 재반영
-  Object.entries(G.upgradeLevels).forEach(([itemId,lv])=>{
-    const recipes=UPGRADE_RECIPES[itemId];if(!recipes)return;
-    if(!ITEMS[itemId])return;if(!ITEMS[itemId].stat)ITEMS[itemId].stat={};
-    // 강화 보너스 초기화 후 재적용
-    if(ITEMS[itemId]._upgradeApplied) return;
+  Object.keys(UPGRADE_RECIPES).forEach(itemId=>{
+    if(!ITEMS[itemId])return;
+    // 원본으로 리셋 후 저장된 강화 레벨만큼만 적용(멱등 — 자기 세이브 재로드·연속 로드에도 안전)
+    ITEMS[itemId].stat=JSON.parse(JSON.stringify(_ITEM_BASE_STATS[itemId]||{}));
+    const lv=G.upgradeLevels[itemId]||0;const recipes=UPGRADE_RECIPES[itemId];
     for(let i=0;i<lv;i++){
       const bonus=recipes[i]?.bonus||{};
       Object.entries(bonus).forEach(([s,v])=>{ITEMS[itemId].stat[s]=(ITEMS[itemId].stat[s]||0)+v;});
     }
-    ITEMS[itemId]._upgradeApplied=true;
   });
   Object.keys(data.chars).forEach(cid=>{
     if(!CHARS[cid])return;
