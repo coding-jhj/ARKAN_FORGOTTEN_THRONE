@@ -3409,7 +3409,7 @@ function getDmg(atk,mult,target,isMagic=false,attacker=null){
   return res.dmg;
 }
 
-function getDmg(atk,mult,target,isMagic=false,attacker=null){
+function calcDmg(atk,mult,target,isMagic=false,attacker=null){
   let a=Math.round(atk*mult);
   // 공격자 부스트 버프 적용
   if(attacker&&attacker.buffs&&attacker.buffs.boosted>0){
