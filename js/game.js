@@ -2414,7 +2414,7 @@ function renderForgeList(){
   const el=document.getElementById('forge-list');if(!el)return;
   if(forgeMode==='upgrade'){
     const upgradeable=G.inventory.filter(({id})=>UPGRADE_RECIPES[id]);
-    if(!upgradeable.length){el.innerHTML='<div style="font-size:12px;color:var(--text3);padding:14px;">강화 가능한 장비가 없습니다.<br>상점에서 장비를 구매하세요.</div>';return;}
+    if(!upgradeable.length){el.innerHTML='<div style="font-size:12px;color:var(--text3);padding:14px;word-break:keep-all;line-height:1.7;">강화 가능한 장비가 없습니다.<br>상점에서 장비를 구매하세요.</div>';return;}
     el.innerHTML='';
     upgradeable.forEach(({id})=>{
       const item=ITEMS[id];if(!item)return;
